@@ -1,5 +1,5 @@
-// Desafio Super Trunfo - Países
-// Tema 2 - Cadastro das Cartas
+// Desafio (Novato) Super Trunfo - Países
+// Tema 3 - Comparando Cartas do Super Trunfo
 
 #include <stdio.h>
 #include <string.h>
