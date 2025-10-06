@@ -1,5 +1,5 @@
 // Desafio (Novato) Super Trunfo - Países
-// Tema 3 - Comparando Cartas do Super Trunfo
+// Tema 3 - Desenvolvendo a Lógica do Jogo
 
 #include <stdio.h>
 #include <string.h>
@@ -12,7 +12,7 @@ int main() {
     unsigned long int populationC2;
     int numberOfTouristAttractionsC1;
     int numberOfTouristAttractionsC2;
-    int comparisonResultPopulation,  comparisonResultCityArea, comparisonResultGrossDomesticProduct, 
+    int options, comparisonResultPopulation, comparisonResultCityArea, comparisonResultGrossDomesticProduct, 
     comparisonResultTouristAttraction, comparisonResultPopulationDensity, comparisonResultgrossDomesticProductPerCapita, comparisonResultSuperPower;
     float cityAreaC1, grossDomesticProductC1, populationDensityC1, grossDomesticProductPerCapitaC1, superPowerC1;
     float cityAreaC2, grossDomesticProductC2, populationDensityC2, grossDomesticProductPerCapitaC2, superPowerC2;
@@ -70,6 +70,10 @@ int main() {
     printf("Informe a quantidade de pontos turísticos na cidade: ");
     scanf("%d", &numberOfTouristAttractionsC2);
 
+    printf("Escolha a opção para comparação (Opções 1 à 5): \n");
+    printf("1 - População.\n2- Área.\n3 - PIB.\n4 - Número de pontos turísticos.\n5 - Densidade demográfica\n");
+    scanf("%d", &options);
+
     // Cálculos - Carta 01
     populationDensityC1 = populationC1 / cityAreaC1;
     grossDomesticProductPerCapitaC1 = (grossDomesticProductC1 * 1000000000.0f) / populationC1;
@@ -115,14 +119,97 @@ int main() {
     printf("Densidade Populacional: %.2f hab/km²\n", populationDensityC2);
     printf("PIB per Capita: %.2f reais\n\n", grossDomesticProductPerCapitaC2);
 
-    // Comparações
-    printf("Comparação de cartas (Atributo: PIB):\n\n");
+    // Menu de comparações
+    switch (options)
+    {
+    case 1:
+         printf("Comparação de cartas (Atributo: População):\n\n");
+    if (comparisonResultPopulation) {
+        printf("%s - %s (SP): %lu.\n", cardOne, cityNameC1, populationC1);
+        printf("%s - %s (RJ): %lu.\n", cardTwo, cityNameC2, populationC2);
+        printf("Resultado: %s - (%s) venceu!", cardOne, cityNameC1);
+    } else if (comparisonResultPopulation == comparisonResultPopulation) {
+        printf("%s - %s (SP): %lu.\n", cardOne, cityNameC1, populationC1);
+        printf("%s - %s (RJ): %lu.\n", cardTwo, cityNameC2, populationC2);
+        printf("Empate!");
+    } else {
+        printf("%s - %s (RJ): %lu.\n", cardTwo, cityNameC2, populationC2);
+        printf("%s - %s (SP): %lu.\n", cardOne, cityNameC1, populationC1);
+        printf("Resultado: %s - (%s) venceu!", cardTwo, cityNameC2);
+    }
+    break;
+
+    case 2:
+         printf("Comparação de cartas (Atributo: Área):\n\n");
+    if (comparisonResultCityArea) {
+        printf("%s - %s (SP): %.2f km².\n", cardOne, cityNameC1, cityAreaC1);
+        printf("%s - %s (RJ): %.2f km².\n", cardTwo, cityNameC2, cityAreaC2);
+        printf("Resultado: %s - (%s) venceu!", cardOne, cityNameC1);
+    } else if (comparisonResultCityArea == comparisonResultCityArea) {
+        printf("%s - %s (SP): %.2f km².\n", cardOne, cityNameC1, cityAreaC1);
+        printf("%s - %s (RJ): %.2f km².\n", cardTwo, cityNameC2, cityAreaC2);
+        printf("Empate!");
+    } else {
+        printf("%s - %s (RJ): %.2f km².\n", cardTwo, cityNameC2, cityAreaC2);
+        printf("%s - %s (SP): %.2f km².\n", cardOne, cityNameC1, cityAreaC1);
+        printf("Resultado: %s - (%s) venceu!", cardTwo, cityNameC2);
+    }
+    break;
+
+    case 3:
+         printf("Comparação de cartas (Atributo: PIB):\n\n");
     if (comparisonResultGrossDomesticProduct) {
         printf("%s - %s (SP): R$ %.2f bilhões de reais\n", cardOne, cityNameC1, grossDomesticProductC1);
+        printf("%s - %s (RJ): R$ %.2f bilhões de reais\n", cardTwo, cityNameC2, grossDomesticProductC2);
         printf("Resultado: %s - (%s) venceu!", cardOne, cityNameC1);
+    } else if (comparisonResultGrossDomesticProduct == comparisonResultGrossDomesticProduct) {
+        printf("%s - %s (SP): R$ %.2f bilhões de reais\n", cardOne, cityNameC1, grossDomesticProductC1);
+        printf("%s - %s (RJ): R$ %.2f bilhões de reais\n", cardTwo, cityNameC2, grossDomesticProductC2);
+        printf("Empate!");
     } else {
         printf("%s - %s (RJ): R$ %.2f bilhões de reais\n", cardTwo, cityNameC2, grossDomesticProductC2);
+        printf("%s - %s (SP): R$ %.2f bilhões de reais\n", cardOne, cityNameC1, grossDomesticProductC1);
         printf("Resultado: %s - (%s) venceu!", cardTwo, cityNameC2);
+    }
+    break;
+
+    case 4:
+         printf("Comparação de cartas (Atributo: Pontos turísticos):\n\n");
+    if (comparisonResultTouristAttraction) {
+        printf("%s - %s (SP): %d.\n", cardOne, cityNameC1, numberOfTouristAttractionsC1);
+        printf("%s - %s (RJ): %d.\n", cardTwo, cityNameC2, numberOfTouristAttractionsC2);
+        printf("Resultado: %s - (%s) venceu!", cardOne, cityNameC1);
+    } else if (comparisonResultTouristAttraction == comparisonResultTouristAttraction) {
+        printf("%s - %s (SP): %d.\n", cardOne, cityNameC1, numberOfTouristAttractionsC1);
+        printf("%s - %s (RJ): %d.\n", cardTwo, cityNameC2, numberOfTouristAttractionsC2);
+        printf("Empate!");
+    } else {
+        printf("%s - %s (RJ): %d.\n", cardTwo, cityNameC2, numberOfTouristAttractionsC2);
+        printf("%s - %s (SP): %d.\n", cardOne, cityNameC1, numberOfTouristAttractionsC1);
+        printf("Resultado: %s - (%s) venceu!", cardTwo, cityNameC2);
+    }
+    break;
+
+    case 5:
+         printf("Comparação de cartas (Atributo: Densidade demográfica):\n\n");
+    if (comparisonResultPopulationDensity) {
+        printf("%s - %s (SP): %d.\n", cardOne, cityNameC1, populationDensityC1);
+        printf("%s - %s (RJ): %d.\n", cardTwo, cityNameC2, populationDensityC2);
+        printf("Resultado: %s - (%s) venceu!", cardOne, cityNameC1);
+    } else if (comparisonResultPopulationDensity == comparisonResultPopulationDensity) {
+        printf("%s - %s (SP): %d.\n", cardOne, cityNameC1, populationDensityC1);
+        printf("%s - %s (RJ): %d.\n", cardTwo, cityNameC2, populationDensityC2);
+        printf("Empate!");
+    } else {
+        printf("%s - %s (RJ): %d.\n", cardTwo, cityNameC2, populationDensityC2);
+        printf("%s - %s (SP): %d.\n", cardOne, cityNameC1, populationDensityC1);
+        printf("Resultado: %s - (%s) venceu!", cardTwo, cityNameC2);
+    }
+    break;
+
+    default:
+        printf("Opção inválida.\n");
+        break;
     }
 
     return 0;
